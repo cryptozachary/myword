@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOCX READER</title>
+    <meta name="description" content="Upload and read .docx files in a clean browser interface." />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="appShell">
+      <header class="topbar">
+        <div class="brand-block">
+          <p class="eyebrow">Document Viewer</p>
+          <h1>DOCX READER</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="uploadAnotherButton" class="btn btn-secondary" type="button">Upload Another</button>
+          <button id="clearButton" class="btn btn-danger" type="button">Clear</button>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section id="statusBanner" class="status-banner hidden" role="status" aria-live="polite"></section>
+
+        <section id="uploadPanel" class="panel upload-panel" aria-label="Upload DOCX">
+          <div
+            id="dropZone"
+            class="drop-zone"
+            tabindex="0"
+            role="button"
+            aria-label="Upload a DOCX file"
+          >
+            <input id="fileInput" type="file" accept=".docx" class="hidden-input" />
+            <div class="drop-zone-content">
+              <h2>Drop your .docx file here</h2>
+              <p>or choose a file from your device</p>
+              <button id="browseButton" class="btn btn-primary" type="button">Choose DOCX File</button>
+              <p class="upload-hint">Supported format: .docx</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="readerPanel" class="panel reader-panel hidden" aria-label="Document reader">
+          <div class="reader-meta" id="readerMeta">
+            <div>
+              <p class="meta-label">File</p>
+              <p class="meta-value" id="fileName">-</p>
+            </div>
+            <div>
+              <p class="meta-label">Size</p>
+              <p class="meta-value" id="fileSize">-</p>
+            </div>
+            <div>
+              <p class="meta-label">Words</p>
+              <p class="meta-value" id="wordCount">-</p>
+            </div>
+          </div>
+
+          <article id="readerContent" class="reader-content" aria-live="polite"></article>
+        </section>
+
+        <section id="emptyState" class="empty-state">
+          <h2>Start by uploading a .docx file</h2>
+          <p>Your document will be converted to readable HTML and displayed here.</p>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/js/app.js"></script>
+  </body>
+</html>

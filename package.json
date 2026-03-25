@@ -1,0 +1,27 @@
+﻿{
+  "name": "docx-reader",
+  "version": "1.0.0",
+  "description": "Lightweight DOCX reader with Node.js, Express, and vanilla JavaScript.",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "node --watch server/app.js"
+  },
+  "keywords": [
+    "docx",
+    "mammoth",
+    "express",
+    "vanilla-js"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mammoth": "^1.8.0",
+    "multer": "^2.0.2",
+    "sanitize-html": "^2.13.0"
+  }
+}
