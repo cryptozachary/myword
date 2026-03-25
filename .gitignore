@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*
+.env.*.local
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime / temp
+tmp/
+temp/
+uploads/
+*.tmp
+*.pid
+
+# Build and packaging outputs
+dist/
+build/
+out/
+release/
+*.tgz
+*.zip
+*.7z
+*.dmg
+*.exe
+*.AppImage
+*.deb
+*.rpm
+*.msi
+
+# Electron Builder / Forge artifacts
+*.blockmap
+maker-*/
+
+# Coverage / reports
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/

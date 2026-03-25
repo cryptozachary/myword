@@ -1,17 +1,20 @@
 ﻿{
   "name": "docx-reader",
-  "version": "1.0.0",
-  "description": "Lightweight DOCX reader with Node.js, Express, and vanilla JavaScript.",
-  "main": "server/app.js",
+  "version": "1.1.0",
+  "description": "Lightweight DOCX reader as a desktop app using Electron + Express + vanilla JavaScript.",
+  "main": "electron/main.js",
   "scripts": {
-    "start": "node server/app.js",
-    "dev": "node --watch server/app.js"
+    "start": "electron .",
+    "desktop": "electron .",
+    "web": "node server/app.js",
+    "web:dev": "node --watch server/app.js"
   },
   "keywords": [
     "docx",
     "mammoth",
     "express",
-    "vanilla-js"
+    "vanilla-js",
+    "electron"
   ],
   "author": "",
   "license": "MIT",
@@ -23,5 +26,8 @@
     "mammoth": "^1.8.0",
     "multer": "^2.0.2",
     "sanitize-html": "^2.13.0"
+  },
+  "devDependencies": {
+    "electron": "^35.1.5"
   }
 }
