@@ -14,6 +14,7 @@ function getElements() {
     fileInput: document.getElementById("fileInput"),
     browseButton: document.getElementById("browseButton"),
     uploadAnotherButton: document.getElementById("uploadAnotherButton"),
+    newDocumentButton: document.getElementById("newDocumentButton"),
     clearButton: document.getElementById("clearButton"),
     downloadButton: document.getElementById("downloadButton"),
     editorToolbar: document.getElementById("editorToolbar"),

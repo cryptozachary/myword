@@ -50,6 +50,7 @@ export function createUploader({ elements }) {
     fileInput,
     browseButton,
     uploadAnotherButton,
+    newDocumentButton,
     clearButton
   } = elements;
 
@@ -161,6 +162,34 @@ export function createUploader({ elements }) {
     }
   }
 
+  function newDocument() {
+    const { isLoading, isDirty } = getState();
+    if (isLoading) {
+      return;
+    }
+
+    if (isDirty && !window.confirm("Discard unsaved changes and start a new document?")) {
+      return;
+    }
+
+    setState({
+      currentFile: {
+        name: "Untitled.docx",
+        size: 0,
+        sizeLabel: "-"
+      },
+      renderedHtml: "<p></p>",
+      stats: { wordCount: 0, characterCount: 0 },
+      error: null,
+      isLoading: false,
+      isDragging: false,
+      isDirty: false,
+      uiState: UI_STATES.SUCCESS
+    });
+
+    fileInput.value = "";
+  }
+
   function clearDocument() {
     const { isLoading } = getState();
     if (isLoading) {
@@ -208,10 +237,12 @@ export function createUploader({ elements }) {
     openFileDialog();
   });
   uploadAnotherButton.addEventListener("click", openFileDialog);
+  newDocumentButton.addEventListener("click", newDocument);
   clearButton.addEventListener("click", clearDocument);
 
   return {
     uploadFile,
+    newDocument,
     clearDocument
   };
 }
