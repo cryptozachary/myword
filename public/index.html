@@ -15,6 +15,7 @@
           <h1>DOCX READER</h1>
         </div>
         <div class="topbar-actions">
+          <button id="downloadButton" class="btn btn-primary" type="button" disabled>Download</button>
           <button id="uploadAnotherButton" class="btn btn-secondary" type="button">Upload Another</button>
           <button id="clearButton" class="btn btn-danger" type="button">Clear</button>
         </div>
@@ -55,9 +56,41 @@
               <p class="meta-label">Words</p>
               <p class="meta-value" id="wordCount">-</p>
             </div>
+            <div>
+              <p class="meta-label">Status</p>
+              <p class="meta-value" id="dirtyStatus">Saved</p>
+            </div>
           </div>
 
-          <article id="readerContent" class="reader-content" aria-live="polite"></article>
+          <div id="editorToolbar" class="editor-toolbar hidden" role="toolbar" aria-label="Formatting toolbar">
+            <div class="toolbar-group">
+              <button type="button" class="tb-btn" data-cmd="bold" title="Bold (Ctrl+B)"><strong>B</strong></button>
+              <button type="button" class="tb-btn" data-cmd="italic" title="Italic (Ctrl+I)"><em>I</em></button>
+              <button type="button" class="tb-btn" data-cmd="underline" title="Underline (Ctrl+U)"><u>U</u></button>
+              <button type="button" class="tb-btn" data-cmd="strike" title="Strikethrough"><s>S</s></button>
+            </div>
+            <div class="toolbar-group">
+              <button type="button" class="tb-btn" data-cmd="paragraph" title="Paragraph">P</button>
+              <button type="button" class="tb-btn" data-cmd="h1" title="Heading 1">H1</button>
+              <button type="button" class="tb-btn" data-cmd="h2" title="Heading 2">H2</button>
+              <button type="button" class="tb-btn" data-cmd="h3" title="Heading 3">H3</button>
+            </div>
+            <div class="toolbar-group">
+              <button type="button" class="tb-btn" data-cmd="bulletList" title="Bullet list">&bull; List</button>
+              <button type="button" class="tb-btn" data-cmd="orderedList" title="Numbered list">1. List</button>
+              <button type="button" class="tb-btn" data-cmd="blockquote" title="Blockquote">&ldquo; Quote</button>
+              <button type="button" class="tb-btn" data-cmd="codeBlock" title="Code block">&lt;/&gt;</button>
+            </div>
+            <div class="toolbar-group">
+              <button type="button" class="tb-btn" data-cmd="hr" title="Horizontal rule">&mdash;</button>
+            </div>
+            <div class="toolbar-group">
+              <button type="button" class="tb-btn" data-cmd="undo" title="Undo (Ctrl+Z)">Undo</button>
+              <button type="button" class="tb-btn" data-cmd="redo" title="Redo (Ctrl+Y)">Redo</button>
+            </div>
+          </div>
+
+          <div id="readerContent" class="reader-content" aria-label="Document content" spellcheck="true"></div>
         </section>
 
         <section id="emptyState" class="empty-state">

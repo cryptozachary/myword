@@ -13,6 +13,7 @@ const initialState = {
   stats: null,
   isLoading: false,
   isDragging: false,
+  isDirty: false,
   error: null,
   uiState: UI_STATES.EMPTY
 };

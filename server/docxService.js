@@ -34,33 +34,16 @@ function sanitizeDocumentHtml(html) {
       "li",
       "strong",
       "em",
-      "table",
-      "thead",
-      "tbody",
-      "tfoot",
-      "tr",
-      "th",
-      "td",
-      "a",
       "img",
       "hr",
       "br"
     ],
     allowedAttributes: {
-      a: ["href", "name", "target", "rel"],
-      img: ["src", "alt", "title"],
-      th: ["colspan", "rowspan"],
-      td: ["colspan", "rowspan"]
+      img: ["src", "alt", "title"]
     },
     allowedSchemes: ["http", "https", "mailto"],
     allowedSchemesByTag: {
       img: ["http", "https", "data"]
-    },
-    transformTags: {
-      a: sanitizeHtml.simpleTransform("a", {
-        target: "_blank",
-        rel: "noopener noreferrer"
-      })
     }
   });
 }

@@ -1,17 +1,21 @@
-﻿{
+{
   "name": "docx-reader",
-  "version": "1.1.0",
-  "description": "Lightweight DOCX reader as a desktop app using Electron + Express + vanilla JavaScript.",
+  "version": "1.2.0",
+  "description": "Lightweight DOCX reader and editor as a desktop app using Electron + Express + Tiptap + vanilla JavaScript.",
   "main": "electron/main.js",
   "scripts": {
     "start": "electron .",
     "desktop": "electron .",
     "web": "node server/app.js",
-    "web:dev": "node --watch server/app.js"
+    "web:dev": "node --watch server/app.js",
+    "build:client": "esbuild client-src/tiptap-entry.js --bundle --format=esm --outfile=public/js/vendor/tiptap.bundle.js --minify",
+    "build:client:dev": "esbuild client-src/tiptap-entry.js --bundle --format=esm --outfile=public/js/vendor/tiptap.bundle.js --sourcemap"
   },
   "keywords": [
     "docx",
     "mammoth",
+    "tiptap",
+    "editor",
     "express",
     "vanilla-js",
     "electron"
@@ -22,12 +26,19 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@tiptap/core": "^3.22.3",
+    "@tiptap/extension-image": "^3.22.3",
+    "@tiptap/extension-link": "^3.22.3",
+    "@tiptap/extension-underline": "^3.22.3",
+    "@tiptap/starter-kit": "^3.22.3",
     "express": "^4.19.2",
+    "html-to-docx": "^1.8.0",
     "mammoth": "^1.8.0",
     "multer": "^2.0.2",
     "sanitize-html": "^2.13.0"
   },
   "devDependencies": {
-    "electron": "^35.1.5"
+    "electron": "^35.1.5",
+    "esbuild": "^0.28.0"
   }
 }

@@ -1,4 +1,4 @@
-﻿import { subscribe, UI_STATES } from "./state.js";
+import { subscribe, UI_STATES } from "./state.js";
 
 function formatNumber(value) {
   if (!Number.isFinite(value)) {
@@ -8,20 +8,24 @@ function formatNumber(value) {
   return new Intl.NumberFormat().format(value);
 }
 
-export function createViewer({ elements }) {
+export function createViewer({ elements, editor }) {
   const {
     dropZone,
     uploadPanel,
     readerPanel,
-    readerContent,
     emptyState,
     statusBanner,
+    editorToolbar,
     fileName,
     fileSize,
     wordCount,
+    dirtyStatus,
     uploadAnotherButton,
-    clearButton
+    clearButton,
+    downloadButton
   } = elements;
+
+  let lastRenderedHtml = null;
 
   subscribe((state) => {
     const hasDocument = Boolean(state.renderedHtml);
@@ -30,6 +34,7 @@ export function createViewer({ elements }) {
 
     uploadAnotherButton.disabled = state.isLoading;
     clearButton.disabled = state.isLoading || !hasDocument;
+    downloadButton.disabled = state.isLoading || !hasDocument;
 
     if (state.error) {
       statusBanner.textContent = state.error;
@@ -53,19 +58,32 @@ export function createViewer({ elements }) {
       uploadPanel.classList.add("hidden");
       emptyState.classList.add("hidden");
       readerPanel.classList.remove("hidden");
-      readerContent.innerHTML = state.renderedHtml;
+      editorToolbar.classList.remove("hidden");
+
+      if (state.renderedHtml !== lastRenderedHtml) {
+        lastRenderedHtml = state.renderedHtml;
+        editor.setContent(state.renderedHtml);
+      }
 
       fileName.textContent = state.currentFile?.name || "-";
       fileSize.textContent = state.currentFile?.sizeLabel || "-";
       wordCount.textContent = formatNumber(state.stats?.wordCount);
+      dirtyStatus.textContent = state.isDirty ? "Modified" : "Saved";
+      dirtyStatus.classList.toggle("is-dirty", Boolean(state.isDirty));
       return;
     }
 
     readerPanel.classList.add("hidden");
-    readerContent.innerHTML = "";
+    editorToolbar.classList.add("hidden");
+    if (lastRenderedHtml !== null) {
+      lastRenderedHtml = null;
+      editor.clear();
+    }
     fileName.textContent = "-";
     fileSize.textContent = "-";
     wordCount.textContent = "-";
+    dirtyStatus.textContent = "Saved";
+    dirtyStatus.classList.remove("is-dirty");
 
     if (state.uiState === UI_STATES.LOADING) {
       uploadPanel.classList.remove("hidden");

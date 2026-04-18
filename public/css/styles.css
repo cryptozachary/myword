@@ -245,12 +245,16 @@ p {
 
 .reader-meta {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.8rem;
   background: var(--bg-muted);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 0.9rem;
+}
+
+.meta-value.is-dirty {
+  color: #b45309;
 }
 
 .meta-label {
@@ -267,6 +271,84 @@ p {
   word-break: break-word;
 }
 
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  max-width: 780px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.toolbar-group {
+  display: flex;
+  gap: 0.2rem;
+  padding: 0 0.35rem;
+  border-right: 1px solid var(--border);
+}
+
+.toolbar-group:last-child {
+  border-right: 0;
+}
+
+.tb-btn,
+.tb-select {
+  font-family: inherit;
+  font-size: 0.88rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+
+.tb-btn:hover,
+.tb-select:hover,
+.tb-btn:focus-visible,
+.tb-select:focus-visible {
+  background: var(--bg-muted);
+  border-color: var(--border);
+  outline: none;
+}
+
+.tb-btn.is-active {
+  background: rgba(29, 78, 216, 0.12);
+  border-color: rgba(29, 78, 216, 0.35);
+  color: var(--accent-hover);
+}
+
+.tb-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.tb-select {
+  min-width: 130px;
+}
+
+.reader-content .ProseMirror {
+  outline: none;
+  min-height: 320px;
+}
+
+.reader-content .ProseMirror > * + * {
+  margin-top: 0.75em;
+}
+
+.reader-content .ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--text-soft);
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
+
 .reader-content {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -279,6 +361,15 @@ p {
   overflow-wrap: anywhere;
   line-height: 1.68;
   font-size: 1rem;
+}
+
+.reader-content[contenteditable="true"] {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(29, 78, 216, 0.15);
+}
+
+.reader-content[contenteditable="true"]:focus {
+  box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.35);
 }
 
 .reader-content h1,
@@ -400,7 +491,7 @@ p {
   }
 
   .reader-meta {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.65rem;
   }
 

@@ -108,6 +108,7 @@ export function createUploader({ elements }) {
         error: null,
         isLoading: false,
         isDragging: false,
+        isDirty: false,
         uiState: UI_STATES.SUCCESS
       });
     } catch (error) {
@@ -173,6 +174,7 @@ export function createUploader({ elements }) {
       error: null,
       isLoading: false,
       isDragging: false,
+      isDirty: false,
       uiState: UI_STATES.EMPTY
     });
 
@@ -201,7 +203,10 @@ export function createUploader({ elements }) {
 
   dropZone.addEventListener("drop", onDrop);
   fileInput.addEventListener("change", onFileInputChange);
-  browseButton.addEventListener("click", openFileDialog);
+  browseButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    openFileDialog();
+  });
   uploadAnotherButton.addEventListener("click", openFileDialog);
   clearButton.addEventListener("click", clearDocument);
 
