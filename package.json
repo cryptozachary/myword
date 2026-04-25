@@ -20,7 +20,7 @@
     "vanilla-js",
     "electron"
   ],
-  "author": "",
+  "author": "Zachsry Lipscomb",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
